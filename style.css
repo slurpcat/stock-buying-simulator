@@ -1,0 +1,19 @@
+body{
+    background-color:bisque;
+}
+
+#chart{
+    width: 65%;
+    float: left;
+    border: 2pt solid;
+    background-color: white;
+}
+
+#form {
+    width: 30%;
+    float: right;
+}
+
+input[type='number']{
+    width: 6em;
+}

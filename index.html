@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Sim</title>
+</head>
+<body onload="onLoadGenerateChart();">
+    <div id="chart">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <div id="form">
+        <table>
+            <tr>
+                <td>starting stock price</td>
+                <td><input type="number" id="sP" value="14.67" min="0.03"></td>
+            </tr>
+            <tr>
+                <td>expected annual rate of return</td>
+                <td><input type="number" step="0.01" id="eRoR" value="0.0553"></td>
+            </tr>
+            <tr>
+                <td>expected annual volatility</td>
+                <td><input type="number" step="0.01" id="eAV" value="0.2245"></td>
+            </tr>
+        </table>
+
+        <button onclick="main()">GENERATE</button>
+
+        <h1 id="price">Current price:</h1>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+    <script src="graph.js"></script>
+</body>
+</html>
