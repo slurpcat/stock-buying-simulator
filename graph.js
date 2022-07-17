@@ -1,14 +1,14 @@
 const TIME_INTERVAL = 0.002;
 var myChart;
 var sP = Number(document.getElementById("sP").value);
-var eRoR = Number(document.getElementById("eRoR").value);
-var eAV = Number(document.getElementById("eAV").value);
-var waitTime = Number(document.getElementById("waitTime").value);
 
 var labels = [0];
 var priceData = [sP];
 var time = 1;
 var actualTime = 1;
+
+var diff;
+var startDiff;
 
 function delay(miliseconds){
     return new Promise(resolve => {
@@ -42,7 +42,10 @@ function normalRandom(){ //generate a random decimal from a normal distribution 
 function generateData(sP,eRoR,eAV){
     priceData[time] = priceData[time-1] * Math.exp((eRoR - eAV**2 / 2) * TIME_INTERVAL + eAV * normalRandom() * Math.sqrt(TIME_INTERVAL));
     priceData[time] = priceData[time].toFixed(2);
-  
+    
+    diff = (priceData[time] - priceData[time-100]).toFixed(2);
+    startDiff = (priceData[time] - sP).toFixed(2);
+
     return (priceData[time]);
 }
 
@@ -52,7 +55,7 @@ const CONFIG = {
     data: {
         labels: labels,
         datasets: [{
-            label: "da stock",
+            label: "slurpcoin",
             data: priceData,
             fill: false,
             borderColor: 'rgba(0,0,0)',
@@ -104,7 +107,9 @@ function generateChart(){
 }
 
 async function main(){
+    document.getElementById("genBtn").remove();
     sP = Number(document.getElementById("sP").value);
+    document.getElementById("parTable").deleteRow(0);
     CONFIG.data.datasets[0].data[0] = sP;
     while(true){
         await delay(waitTime);
@@ -113,6 +118,24 @@ async function main(){
         waitTime = Number(document.getElementById("waitTime").value)
         generateChart();
         document.getElementById("price").innerHTML = "Current price: $" + CONFIG.data.datasets[0].data[CONFIG.data.datasets[0].data.length-1];
+        document.getElementById("diff").innerHTML = diff;
+        document.getElementById("startDiff").innerHTML = startDiff;
+
+        document.getElementById("diff").style.backgroundColor = 'rgba(0,0,0)';
+        document.getElementById("startDiff").style.backgroundColor = 'rgba(0,0,0)';
+
+        if(document.getElementById("diff").innerHTML>0){
+            document.getElementById("diff").style.color = 'rgba(0,255,0)';
+        }else{
+            document.getElementById("diff").style.color = 'rgba(255,0,0)';
+        }
+
+        if(document.getElementById("startDiff").innerHTML>0){
+            document.getElementById("startDiff").style.color = 'rgba(0,255,0)';
+        }else{
+            document.getElementById("startDiff").style.color = 'rgba(255,0,0)';
+        }
+
     }
 
 }
