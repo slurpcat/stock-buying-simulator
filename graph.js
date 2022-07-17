@@ -3,6 +3,7 @@ var myChart;
 var sP = Number(document.getElementById("sP").value);
 var eRoR = Number(document.getElementById("eRoR").value);
 var eAV = Number(document.getElementById("eAV").value);
+var waitTime = Number(document.getElementById("waitTime").value);
 
 var labels = [0];
 var priceData = [sP];
@@ -44,7 +45,6 @@ function generateData(sP,eRoR,eAV){
   
     return (priceData[time]);
 }
-
 
 const CTX = document.getElementById('myChart').getContext('2d');
 const CONFIG = {
@@ -107,9 +107,10 @@ async function main(){
     sP = Number(document.getElementById("sP").value);
     CONFIG.data.datasets[0].data[0] = sP;
     while(true){
-        await delay(10);
+        await delay(waitTime);
         eRoR = Number(document.getElementById("eRoR").value);
         eAV = Number(document.getElementById("eAV").value);
+        waitTime = Number(document.getElementById("waitTime").value)
         generateChart();
         document.getElementById("price").innerHTML = "Current price: $" + CONFIG.data.datasets[0].data[CONFIG.data.datasets[0].data.length-1];
     }
