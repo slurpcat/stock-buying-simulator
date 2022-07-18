@@ -9,6 +9,7 @@ var actualTime = 1;
 
 var diff;
 var startDiff;
+var currentDate;
 
 function delay(miliseconds){
     return new Promise(resolve => {
@@ -121,21 +122,29 @@ async function main(){
         document.getElementById("diff").innerHTML = diff;
         document.getElementById("startDiff").innerHTML = startDiff;
 
-        document.getElementById("diff").style.backgroundColor = 'rgba(0,0,0)';
-        document.getElementById("startDiff").style.backgroundColor = 'rgba(0,0,0)';
+        var diffElement = document.getElementById("diff");
+        var startDiffElement = document.getElementById("startDiff");
+        var currentDateElement = document.getElementById("currentDate");
 
-        if(document.getElementById("diff").innerHTML>0){
-            document.getElementById("diff").style.color = 'rgba(0,255,0)';
+        diffElement.style.backgroundColor = 'rgba(0,0,0)';
+        startDiffElement.style.backgroundColor = 'rgba(0,0,0)';
+
+        if(diffElement.innerHTML>0){
+            diffElement.style.color = 'rgba(0,255,0)';
         }else{
-            document.getElementById("diff").style.color = 'rgba(255,0,0)';
+            diffElement.style.color = 'rgba(255,0,0)';
         }
 
-        if(document.getElementById("startDiff").innerHTML>0){
-            document.getElementById("startDiff").style.color = 'rgba(0,255,0)';
+        if(startDiffElement.innerHTML>0){
+            startDiffElement.style.color = 'rgba(0,255,0)';
         }else{
-            document.getElementById("startDiff").style.color = 'rgba(255,0,0)';
+            startDiffElement.style.color = 'rgba(255,0,0)';
         }
 
+        currentDate = new Date();
+        currentDate.setDate(currentDate.getDate() + actualTime)
+
+        currentDateElement.innerHTML = currentDate.getDate().toString() + "." + (currentDate.getMonth()+1).toString() + "." + currentDate.getFullYear().toString();
     }
 
 }
