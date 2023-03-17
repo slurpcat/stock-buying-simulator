@@ -17,3 +17,8 @@ body{
 input[type='number']{
     width: 6em;
 }
+
+#interaction{
+    margin-left: 10%;
+    float: left;
+}
