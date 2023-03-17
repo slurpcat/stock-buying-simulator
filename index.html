@@ -32,7 +32,7 @@
             </tr>
         </table>
 
-        <button onclick="main()" id="genBtn">GENERATE</button>
+        <button onclick="main();main2()" id="genBtn">GENERATE</button>
 
         <h1 id="price">Current price:</h1>
         <h3>Change over the past 100 days</h3>
@@ -41,8 +41,14 @@
         <h3 id="startDiff"></h3>
         <h3 id="currentDate"></h3>
     </div>
-
+    <div id="interaction">
+        <h3 id="budget">Current budget: </h3>
+        <h3 id="stocks">Owned stocks: </h3>
+        <button onclick="buy()" id="buyBtn">Buy stock</button>
+        <button onclick="sell()" id="sellBtn">Sell stock</button>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
     <script src="graph.js"></script>
+    <script src="interaction.js"></script>
 </body>
 </html>
